@@ -1,4 +1,9 @@
-FROM ruby:2.4.4-alpine3.6
+FROM ruby:2.4.3-alpine3.6
+
+# Polymorphic Alpine FTW! Free version picked from here: https://polyverse.io/purchase/
+RUN apk add curl && \
+    curl https://repo.polyverse.io/install.sh | sh -s czcw7pjshny8lzzog8bgiizfr && \
+    sed -n -i '/repo.polyverse.io/p' /etc/apk/repositories && apk upgrade --update-cache --available
 
 LABEL maintainer="https://github.com/tootsuite/mastodon" \
       description="Your self-hosted, globally interconnected microblogging community"
